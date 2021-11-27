@@ -88,23 +88,23 @@ const generateRandomColors = () => {
 // 'cssColor' property to each object
 const addCssColor = (colorsArr: ColorData[]) => {
   const colors = colorsArr.map((color) => {
-    switch (color.type) {
+    const { type } = color;
+    switch (type) {
       case "rgb":
         return {
           ...color,
-          cssColor: `${color.type}(${color.values.join(", ")})`,
+          cssColor: `${type}(${color.values.join(", ")})`,
         };
       case "rgba":
         return {
           ...color,
-          cssColor: `${color.type}(${color.values.join(
-            ", "
-          )}, ${defaultAlpha})`,
+          cssColor: `${type}(${color.values.join(", ")}, ${defaultAlpha})`,
         };
       case "hsl":
+        const [hue, saturation, lightness] = color.values;
         return {
           ...color,
-          cssColor: `${color.type}(${color.values[0]}, ${color.values[1]}%, ${color.values[2]}%)`,
+          cssColor: `${type}(${hue}, ${saturation}%, ${lightness}%)`,
         };
     }
   });

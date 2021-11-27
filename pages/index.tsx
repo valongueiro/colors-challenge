@@ -19,10 +19,10 @@ const Home: NextPage = () => {
     setIsLoading(false);
   };
 
-  let content: React.ReactNode;
+  let contentToRender;
 
   if (isLoading) {
-    content = (
+    contentToRender = (
       <div className={styles.swatches}>
         <p className={styles.loading}>Loading...</p>
       </div>
@@ -30,7 +30,7 @@ const Home: NextPage = () => {
   }
 
   if (!isLoading) {
-    content = colors.map((color) => {
+    contentToRender = colors.map((color) => {
       return (
         <div key={color.cssColor} className={styles.swatches}>
           <div
@@ -45,7 +45,7 @@ const Home: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.flex}>{content}</div>
+      <div className={styles.flex}>{contentToRender}</div>
       <button className={styles.button} onClick={fetchColors}>
         Display New Colors
       </button>
